@@ -146,11 +146,11 @@
 			buildConfigurationList = DC889EF72346660C00B3AB93 /* Build configuration list for PBXNativeTarget "moya generator example" */;
 			buildPhases = (
 				9B45351FEB6F4E87AD8A2FC9 /* [CP] Check Pods Manifest.lock */,
+				DC889EFA2346669100B3AB93 /* ShellScript */,
 				DC889EDF2346660900B3AB93 /* Sources */,
 				DC889EE02346660900B3AB93 /* Frameworks */,
 				DC889EE12346660900B3AB93 /* Resources */,
 				87E3A1F292A8035D18767B3E /* [CP] Embed Pods Frameworks */,
-				DC889EFA2346669100B3AB93 /* ShellScript */,
 			);
 			buildRules = (
 			);
