@@ -1,0 +1,93 @@
+{
+	"providerName": "WavesRPC",
+	"baseURL": "https://waves-rpc.trustwalletapp.com",
+	"headers": {
+		"content-type": "application/json"		
+	},
+	"endpoints": [
+		{
+			"name": "nodeInfo",
+			"path": "/node/status",
+			"method": "get",
+			"task": "plain"
+		},
+		{
+			"name": "balance",
+			"path": "/addresses/balance/{address}/0",
+			"method": "get",
+			"task": "plain",
+			"parameters": [
+				{
+					"name": "address",
+					"type": "String"
+				}
+			]
+		},
+		{
+			"name": "broadcast",
+			"path": "/transactions/broadcast",
+			"method": "post",
+			"task": "data",
+			"parameters": [
+				{
+					"name": "data",
+					"type": "Data"
+				}
+			]
+		},
+		{
+			"name": "transaction",
+			"path": "transactions/info/{hash}",
+			"method": "get",
+			"task": "plain",
+			"parameters": [
+				{
+					"name": "hash",
+					"type": "String"
+				}
+			]
+		}		
+	],
+	"models": [
+		{
+			"name": "WavesBalance",
+			"parameters": [
+				{
+					"name": "balance",
+					"type": "Int64"
+				}
+			]
+		},
+		{
+			"name": "WavesSentTransaction",
+			"parameters": [
+				{
+					"name": "id",
+					"type": "String"
+				}
+			]
+		},
+		{
+			"name": "WavesRPCError",
+			"parameters": [
+				{
+					"name": "error",
+					"type": "Int"
+				},
+				{
+					"name": "message",
+					"type": "String"
+				}
+			]
+		},
+		{
+			"name": "WavesTransactionInfo",
+			"parameters": [
+				{
+					"name": "height",
+					"type": "Int64"
+				}
+			]
+		}
+	]
+}

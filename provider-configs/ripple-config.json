@@ -1,0 +1,201 @@
+{
+	"providerName": "RippleRPC",
+	"custom": true,
+	"baseURL": "https://ripple-rpc.trustwalletapp.com",
+	"headers": {
+		"content-type": "application/json",
+		"accept": "application/json"
+	},
+	"endpoints": [
+		{
+			"name": "account",
+			"altName": "account_info",
+			"path": "/",
+			"method": "post",
+			"task": "parameters",
+			"parameters": [
+				{
+					"name": "address",
+					"outputName": "account",
+					"type": "String"
+				},
+				{
+					"name": "strict",
+					"type": "Bool",
+					"fixedValue": "true"
+				},
+				{
+					"name": "ledger_index",
+					"type": "String",
+					"fixedValue": "\"current\""
+				},
+				{
+					"name": "queue",
+					"type": "Bool",
+					"fixedValue": "true"
+				}
+			],
+			"parameterMapping": {
+				"params": "[$parameters]",
+				"method": "$altName"
+			}
+		},
+		{
+			"name": "broadcast",
+			"altName": "submit",
+			"path": "/",
+			"method": "post",
+			"task": "parameters",
+			"parameters": [
+				{
+					"name": "hex",
+					"outputName": "tx_blob",
+					"type": "String"
+				}
+			],
+			"parameterMapping": {
+				"params": "[$parameters]",
+				"method": "$altName"
+			}
+		},
+		{
+			"name": "transaction",
+			"altName": "tx",
+			"path": "/",
+			"method": "post",
+			"task": "parameters",
+			"parameters": [
+				{
+					"name": "ID",
+					"outputName": "transaction",
+					"type": "String"
+				}
+			],
+			"parameterMapping": {
+				"params": "[$parameters]",
+				"method": "$altName"
+			}
+		},
+		{
+			"name": "serverState",
+			"altName": "server_state",
+			"path": "/",
+			"method": "post",
+			"task": "parameters",
+			"parameters": [				
+			],
+			"parameterMapping": {
+				"params": "[$parameters]",
+				"method": "$altName"
+			}
+		}
+	],
+	"models": [
+		{
+			"name": "RippleAccount",			
+			"parameters": [
+				{
+					"name": "data",
+					"outputName": "account_data",
+					"type": "RippleAccountData"
+				}
+			]
+		},
+		{
+			"name": "RippleAccountData",
+			"parameters": [
+				{
+					"name": "Balance",
+					"type": "String"
+				},
+				{
+					"name": "Sequence",
+					"type": "Int64"
+				}
+			]
+		},
+		{
+			"name": "RippleLedger",
+			"parameters": [
+				{
+					"name": "index",
+					"outputName": "ledger_index",
+					"type": "UInt64"
+				}				
+			]
+		},
+		{
+			"name": "RippleJSONTransaction",
+			"parameters": [
+				{
+					"name": "hash",
+					"type": "String"
+				}
+			]
+		},
+		{
+			"name": "RippleSentTransaction",
+			"parameters": [
+				{
+					"name": "code",
+					"outputName": "engine_result_code",
+					"type": "Int"
+				},
+				{
+					"name": "message",
+					"outputName": "engine_result_message",
+					"type": "String"
+				},
+				{
+					"name": "tx",
+					"outputName": "tx_json",
+					"type": "RippleJSONTransaction"
+				}
+			]
+		},
+		{
+			"name": "RippleTransaction",
+			"parameters": [
+				{
+					"name": "validated",
+					"type": "Bool"
+				}
+			]
+		},
+		{
+			"name": "RippleServerState",
+			"parameters": [
+				{
+					"name": "state",
+					"type": "State"
+				}
+			]
+		},
+		{
+			"name": "Ledger",
+			"parameters": [
+				{
+					"name": "base_fee",
+					"type": "Int64"
+				}
+			]
+		},
+		{
+			"name": "State",
+			"parameters": [
+				{
+					"name": "load_base",
+					"type": "Int64"
+				},
+				{
+					"name": "load_factor",
+					"type": "Int64"
+				},
+				{
+					"name": "validated_ledger",
+					"type": "Ledger"
+				}
+			]
+		}
+	]
+}
